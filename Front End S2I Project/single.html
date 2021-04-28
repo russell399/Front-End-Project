@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Russell Perez - To Do List</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.min.css" integrity="sha512-ztsAq/T5Mif7onFaDEa5wsi2yyDn5ygdVwSSQ4iok5BPJQGYz1CoXWZSA7OgwGWrxrSrbF0K85PD5uLpimu4eQ==" crossorigin="anonymous" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+
+  <script> 
+  const form = document.querySelector('form');
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+const input = document.getElementById('item');
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+const liMaker = (text) => {
+  const li = document.createElement('li');
+  li.textContent = text;
+  ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  itemsArray.push(input.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  liMaker(input.value);
+  input.value = "";
+});
+
+data.forEach(item => {
+  liMaker(item);
+});
+
+button.addEventListener('click', function () {
+  localStorage.clear();
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+  itemsArray = [];
+});
+</script>
+
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="">
+    </div>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="single.html">To Do List</a></li>
+      <li><a href="">Contatti</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="hero hero--small">
+    <div class="hero__content">
+      <p class="intro-text">Russell Perez</p>
+      <h1 class="big-text">To Do List</h1>
+    </div>
+  </div>
+
+
+
+
+  <div class="content">
+    <h3 class="normal-text"></h3>
+    <p> </p>
+  </div>
+
+  <div class="small-container">
+    <form> Realizzazione To Do List con LocalStorage <br> <br> <br>
+      <input id="item" type="text" placeholder="New">
+    </form>
+    <h2>Items</h2>
+    <ul></ul>
+    <button id="clear">Clear All</button>
+  </div>
+
+ 
+  <footer class="footer">
+    <a NAME= "contatti"></a>
+    <div class="grid">
+      <div class="col reveal">
+        <h4 class="normal-text tw">Contatti</h4>
+        <p>Tel: +39 3917328138 <br> <br> Email: russell.perez399@gmail.com <br> <br> Sede Legale: Roma (RM) <br> <br> Orari: Lun - Sab dalle 9:00 am - 20:00 pm </p>
+      </div>
+    
+      <div class="col reveal">
+        <h4 class="normal-text tw">Servizi Web</h4>
+        <p>Creazione siti web <br><br> Ecommerce <br><br> Manutenzione sito <br><br> Ottimizzazione SEO <br><br> SEO WordPress <br><br></p>
+      </div>
+      <div class="col reveal">
+        <h4 class="normal-text tw">Altri servizi</h4>
+        <p>Digital Marketing <br><br> Hosting WordPress <br><br> Migrazione siti web <br><br> SEO On Page <br><br> UX/UI Design</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js" integrity="sha512-Nx/M3T/fWprNarYOrnl+gfWZ25YlZtSNmhjHeC0+2gCtyAdDFXqaORJBj1dC427zt3z/HwkUpPX+cxzonjUgrA==" crossorigin="anonymous"></script>
+
+  <script>
+  $( document ).ready(function() {
+
+    /* Open Panel */
+    $( ".hamburger" ).on('click', function() {
+      $(".menu").toggleClass("menu--open");
+    });
+
+  });
+</script>
+
+
+</body>
+</html>
